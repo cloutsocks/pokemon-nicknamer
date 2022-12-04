@@ -44,8 +44,8 @@ function init() {
         $pokedex.parentElement.style.width = "auto";
     });
 
-    let $debug = document.getElementById("btn_debug");
-    $debug.addEventListener("click", (e) => {
+    let $filter = document.getElementById("btn_filter");
+    $filter.addEventListener("click", (e) => {
         $pokedex.classList.toggle("filtered");
 
         if ($pokedex.classList.contains("filtered")) {
