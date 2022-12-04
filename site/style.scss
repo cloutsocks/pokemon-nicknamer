@@ -109,6 +109,8 @@ grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
     right: 20px;
     display: flex;
 
+    font-family: "Nunito Sans", $fontstack;
+
     .btn {
         background: #333;
         color: #fff;

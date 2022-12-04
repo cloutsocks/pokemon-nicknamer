@@ -123,7 +123,7 @@ function makePokemonBlock(n, name) {
 
     let image = document.createElement("div");
     image.classList.add("pokemon-image");
-    image.innerHTML = `<img src="./img/pokemon/${name}.png" alt="${name}" loading="lazy">`;
+    image.innerHTML = `<img src="./img/pokemon/${name}.png" alt="${name}">`;
     $pokemon.appendChild(image);
 
     let noDiv = document.createElement("div");
