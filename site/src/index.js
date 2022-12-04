@@ -28,6 +28,9 @@ function init() {
             $canvas = canvas;
             canvas.style.opacity = "0";
             canvas.style.transform = "scale(0)";
+            canvas.style.width = "";
+            canvas.style.height = "";
+
             $exporter.appendChild(canvas);
 
             $exporter.classList.remove("hidden");
@@ -55,10 +58,24 @@ function init() {
         }
     });
 
+    let $save = document.getElementById("btn_save");
+    $save.addEventListener("click", (e) => {
+        e.stopPropagation();
+        let image = new Image();
+        image.src = $canvas.toDataURL("image/png");
+
+        let anchor = document.createElement("a");
+        anchor.setAttribute("href", image.src);
+        anchor.setAttribute("download", "nicknames.png");
+        anchor.click();
+    });
+
     $exporter.addEventListener("click", (e) => {
         $exporter.classList.add("hidden");
         $canvas.remove();
     });
+
+
 }
 
 function makeDex() {
