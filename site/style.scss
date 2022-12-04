@@ -88,6 +88,10 @@ textarea {
     align-items: center;
     padding-bottom: 10px;
 
+    &:hover {
+        background: #e6e6e6;
+    }
+
     .name {
         font-family: $nunito;
         font-weight: 600;
@@ -100,6 +104,10 @@ textarea {
 
     &.named {
         background-color: #ffcce0;
+        &:hover {
+            background-color: #ffb3cc;
+        }
+
     }
 }
 
