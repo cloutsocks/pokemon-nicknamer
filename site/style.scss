@@ -1,19 +1,26 @@
-@import url("https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@600;700&display=swap");
 
 $fontstack: -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial,
-  sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol;
+    sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol;
+
+$nunito: "Nunito Sans", $fontstack;
 
 html {
-  min-height: 100%;
-  color: #404040;
-  font-family: $fontstack;
-  font-size: 16px;
-  line-height: 1.5;
+    min-height: 100%;
+    color: #404040;
+    font-family: $fontstack;
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+a {
+    color: initial;
+    text-decoration: none;
 }
 
 .main {
-  margin: 0 auto;
-  max-width: 1228px;
+    margin: 0 auto;
+    max-width: 1228px;
 }
 
 button,
@@ -21,98 +28,134 @@ input,
 optgroup,
 select,
 textarea {
-  font-family: inherit;
-  font-size: 100%;
-  margin: 0;
+    font-family: inherit;
+    font-size: 100%;
+    margin: 0;
 }
 
 .pokegrid-wrapper {
     padding: 8px;
 }
 .pokegrid {
-  display: grid;
-  //grid-gap: 2rem 0.75rem;
-//   grid-gap: 0.5rem;
-  grid-gap: 8px;
-//   grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
-grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    display: grid;
+    //grid-gap: 2rem 0.75rem;
+    //   grid-gap: 0.5rem;
+    grid-gap: 8px;
+    //   grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
 
+    .block {
+        position: relative;
+        height: 180px;
+    }
+
+    input.nickname {
+        font-family: $nunito;
+        background: none;
+        line-height: inherit;
+        text-align: center;
+        padding: 0;
+        border: 0;
+        // color: #615DF9;
+        font-weight: 700;
+        outline: none;
+    }
 }
 
 .pokemon {
-  background: #f2f2f2;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding-bottom: 10px;
+    order: 2;
+    background: #f2f2f2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: 10px;
 
-  .name {
-    font-family: "Nunito Sans", $fontstack;
-    font-weight: 600;
-  }
+    .name {
+        font-family: $nunito;
+        font-weight: 600;
+    }
 
-  .no {
-    color: #737373;
-    font-size: 0.875rem;
-  }
-
-  input.nickname {
-    font-family: "Nunito Sans", $fontstack;
-    background: none;
-    line-height: inherit;
-    text-align: center;
-    padding: 0;
-    border: 0;
-    // color: #615DF9;
-    font-weight: 700;
-    outline: none;
-  }
-
-  &.named {
-    background-color: #ffcce0;
-  }
-}
-
-.pokegrid.filtered {
-    // width: 600px;
-    // height: 600px;
     .no {
-        // display: none;
+        color: #737373;
+        font-size: 0.875rem;
     }
-    .pokemon {
-        background-color: #f2f2f2;
-    }
-    .pokemon:not(.named) {
-        display: none;
-    }
-    input.nickname {
-        width: 100%;
-        color: #404040;
-        font-weight: 700;
+
+    &.named {
+        background-color: #ffcce0;
     }
 }
 
 .pokemon-image {
-  img {
-    max-width: 100%;
-    width: 128px;
-    height: 128px;
-    margin-top: -10px;
-  }
+    img {
+        max-width: 100%;
+        width: 128px;
+        height: 128px;
+        margin-top: -10px;
+    }
 }
 
+.pokegrid {
+    .team-block {
+        order: 1;
+        height: 190px;
+        font-family: $nunito;
+        font-weight: 700;
+        background-color: #646eab;
+        color: white;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
 
+        .content {
+            z-index: 1;
+            width: 100%;
+            height: 180px;
+            display: flex;
+            flex-direction: column;
+
+            background-image: url("./src/img/pokeball-accent.png");
+            background-repeat: no-repeat;
+            background-size: cover;
+            // background-size: 122%;
+
+            input.nickname, .name {
+                color: white;
+                text-align: center;
+                margin-top: auto;
+                margin-bottom: auto;
+                font-size: 1.2em;
+                margin: auto 3px;
+            }
+
+            .madewith {
+                font-size: 0.875rem;
+                font-family: $fontstack;
+                text-align: center;
+                font-weight: initial;
+                margin-bottom: 10%;
+
+                a, .url {
+                    color: #fff;
+                    border-bottom: 1px solid #fff;
+                    padding-bottom: 3px;
+                }
+            }
+        }
+    }
+}
 
 .floating-ui {
     position: fixed;
     bottom: 20px;
     right: 20px;
     display: flex;
-    font-family: "Nunito Sans", $fontstack;
+    font-family: $nunito;
+    z-index: 100;
 }
 
 .btn {
-    font-family: "Nunito Sans", $fontstack;
+    font-family: $nunito;
     background: #333;
     color: #fff;
     border: 0;
@@ -152,7 +195,9 @@ grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
         // left: 0px;
         max-width: 95%;
         z-index: 99999999;
-        transition: transform 0.3s cubic-bezier(0.42, 0, 0.58, 1) 0s, opacity 0.3s cubic-bezier(0.42, 0, 0.58, 1) 0s, -webkit-transform 0.3s cubic-bezier(0.42, 0, 0.58, 1) 0s;
+        transition: transform 0.3s cubic-bezier(0.42, 0, 0.58, 1) 0s,
+            opacity 0.3s cubic-bezier(0.42, 0, 0.58, 1) 0s,
+            -webkit-transform 0.3s cubic-bezier(0.42, 0, 0.58, 1) 0s;
     }
 
     #btn_save {
@@ -166,4 +211,43 @@ grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
 .hidden {
     display: none;
     pointer-events: none;
-  }
+}
+
+.pokeball {
+    //position: absolute;
+    width: 100%;
+    // margin-top: -100%;
+
+    // svg {
+    //     width: 100%;
+    //     height: auto;
+    //     fill: rgba(0,0,0,.15);
+    //     //transform: rotate(16deg);
+    // }
+}
+
+.pokegrid.filtered {
+    // width: 600px;
+    // height: 600px;
+    .no {
+        // display: none;
+    }
+    .pokemon {
+        background-color: #f2f2f2;
+        order: 1;
+    }
+    .team-block {
+        order: 2;
+    }
+    .pokemon:not(.named) {
+        display: none;
+    }
+
+    .pokemon {
+        input.nickname {
+            width: 100%;
+            color: #404040;
+            font-weight: 700;
+        }
+    }
+}

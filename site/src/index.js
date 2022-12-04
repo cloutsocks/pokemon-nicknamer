@@ -1,14 +1,35 @@
 import "../style.scss";
 import { dex } from "./dex";
+// import { pokeball } from "./pokeball";
 import html2canvas from "html2canvas";
 
-if (document.readyState !== "loading") init();
-else document.addEventListener("DOMContentLoaded", init);
+const teamPlaceholder = "enter your team name";
 
 let $pokedex;
 let $exporter;
 let $main;
 let $canvas;
+let $teamBlock;
+
+let types = {
+    'ice': '#9dd1f2',
+    'dragon': '#646eab',
+    'water': '#78a4bf',
+    'fire': '#e88158',
+    'electric': '#f2cb6f',
+    'fairy': '#f0a1c1',
+    'dark': '#6b6b6b',
+    'grass': '#7fbf78',
+    'normal': '#838383',
+    'earth': '#9c6e5a',
+    'psychic': '#bd8cbf',
+}
+
+
+
+if (document.readyState !== "loading") init();
+else document.addEventListener("DOMContentLoaded", init);
+
 
 function init() {
     $pokedex = document.getElementById("pokedex");
@@ -24,6 +45,11 @@ function init() {
         $pokedex.classList.add("filtered");
         $pokedex.parentElement.style.width = getSquareWidth() + "px";
 
+        let $teamName;
+        if (!localStorage['team_name']) {
+            $teamName = $teamBlock.querySelector(".name");
+            $teamName.textContent = "";
+        }
         html2canvas(document.querySelector("#pokedex").parentElement).then((canvas) => {
             $canvas = canvas;
             canvas.style.opacity = "0";
@@ -45,6 +71,9 @@ function init() {
         // remove styles
         $pokedex.classList.remove("filtered");
         $pokedex.parentElement.style.width = "auto";
+        if (!localStorage['team_name']) {
+            $teamName.textContent = teamPlaceholder;
+        }
     });
 
     let $filter = document.getElementById("btn_filter");
@@ -82,7 +111,6 @@ function makeDex() {
     let fragment = makePokeGrid();
     $pokedex.appendChild(fragment);
 
-    // add event listeners for every name
     let $blocks = $pokedex.querySelectorAll(".pokemon");
     $blocks.forEach(($pokemon) => {
         let $name = $pokemon.querySelector(".name");
@@ -118,19 +146,63 @@ function makeDex() {
             }
         });
     });
+
+    // add event listeners for team block
+    let $name = $teamBlock.querySelector(".name");
+    let $input = $name.nextElementSibling;
+
+    $teamBlock.addEventListener("click", (e) => {
+        $name.classList.add("hidden");
+        $input.classList.remove("hidden");
+        $input.removeAttribute("tabindex");
+        $input.focus();
+    });
+
+    $input.addEventListener("focus", (e) => {
+        $input.select();
+    });
+
+    $input.addEventListener("blur", (e) => {
+        if ($input.value.length > 0) {
+            localStorage['team_name'] = $input.value;
+        } else {
+            $name.textContent = teamPlaceholder;
+            delete localStorage['team_name'];
+        }
+
+        $name.classList.remove("hidden");
+        $input.classList.add("hidden");
+        $input.setAttribute("tabindex", -1);
+    });
+
+    $input.addEventListener("keydown", (e) => {
+        if (e.key === "Enter") {
+            $input.blur();
+        }
+    });
+
+
+
 }
 
 function makePokeGrid() {
     let fragment = document.createDocumentFragment();
+
+    $teamBlock = makeTeamBlock("team")
+
+    fragment.appendChild($teamBlock);
+
     for (let i = 0; i < dex.length; i++) {
         let block = makePokemonBlock(i + 1, dex[i]);
         fragment.appendChild(block);
     }
+
     return fragment;
 }
 
 function makePokemonBlock(n, name) {
     const $pokemon = document.createElement("div");
+    $pokemon.classList.add("block");
     $pokemon.classList.add("pokemon");
 
     $pokemon.dataset.no = n;
@@ -169,6 +241,50 @@ function makePokemonBlock(n, name) {
     }
 
     return $pokemon;
+}
+
+function makeTeamBlock(id) {
+    let $block = document.createElement("div");
+    
+    $block.id = id;
+    $block.classList.add("block");
+    $block.classList.add("team-block");
+
+    let $content = document.createElement("div");
+    $content.classList.add("content");  
+
+    let $name = document.createElement("div");
+    $name.classList.add("name");
+    $name.textContent = teamPlaceholder;
+    $content.appendChild($name);
+
+    let $input = document.createElement("input");
+    $input.classList.add("nickname");
+    $input.setAttribute("type", "text");
+    $input.classList.add("hidden");
+    $input.setAttribute("tabindex", -1);
+    $content.appendChild($input);
+
+    let $madewith = document.createElement("div");
+    $madewith.classList.add("madewith");
+    $madewith.innerHTML = `made with <span class="url">nicknames.please.rest</span>`;
+    $content.appendChild($madewith);
+
+    if (localStorage['team_name']) {
+        $name.textContent = $input.value = localStorage['team_name'];
+    } else {
+
+    }
+
+    $block.appendChild($content);
+
+
+    // let $pokeball = document.createElement("div");
+    // $pokeball.classList.add("pokeball");
+    // $pokeball.innerHTML = pokeball;
+    // $block.appendChild($pokeball);
+
+    return $block;
 }
 
 function getSquareWidth() {
