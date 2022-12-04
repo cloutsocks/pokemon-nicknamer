@@ -8,6 +8,7 @@ else document.addEventListener("DOMContentLoaded", init);
 let $pokedex;
 let $exporter;
 let $main;
+let $canvas;
 
 function init() {
     $pokedex = document.getElementById("pokedex");
@@ -24,6 +25,7 @@ function init() {
         $pokedex.parentElement.style.width = getSquareWidth() + "px";
 
         html2canvas(document.querySelector("#pokedex").parentElement).then((canvas) => {
+            $canvas = canvas;
             canvas.style.opacity = "0";
             canvas.style.transform = "scale(0)";
             $exporter.appendChild(canvas);
@@ -51,6 +53,11 @@ function init() {
         } else {
             $pokedex.style.width = "auto";
         }
+    });
+
+    $exporter.addEventListener("click", (e) => {
+        $exporter.classList.add("hidden");
+        $canvas.remove();
     });
 }
 
