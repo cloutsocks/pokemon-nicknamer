@@ -13,6 +13,9 @@ html {
     line-height: 1.5;
 }
 
+body {
+}
+
 a {
     color: initial;
     text-decoration: none;
@@ -23,7 +26,17 @@ a {
     max-width: 1228px;
 
     & > * { 
-        padding: 8px;
+        padding: 0 8px;
+    }
+}
+
+h1 {
+    margin: 0;
+}
+
+.logo {
+    img {
+        width: 320px;
     }
 }
 
@@ -38,6 +51,7 @@ textarea {
 }
 
 .pokegrid-wrapper {
+    padding: 8px;
 }
 .pokegrid {
     display: grid;
@@ -159,6 +173,8 @@ textarea {
 }
 
 .btn {
+    display: flex;
+    user-select: none;
     font-family: $nunito;
     background: #333;
     color: #fff;
@@ -230,12 +246,23 @@ textarea {
     // }
 }
 
+.download {
+    display: block;
+    width: 24px;
+    height: 24px;
+}
+
+.type-picker {
+    margin-bottom: 8px;
+}
+
 .types {
     display: flex;
 
     .type {
         width: 30px;
-        height: 30px;
+        // height: 30px;
+        aspect-ratio: 1;
         &:not(:last-child) {
             margin-right: 5px;
         }

@@ -11,6 +11,7 @@ let $main;
 let $canvas;
 let $teamBlock;
 let $typePicker;
+let $floatingUi;
 
 let types = {
     'ice': '#9dd1f2',
@@ -36,6 +37,7 @@ function init() {
     $pokedex = document.getElementById("pokedex");
     $exporter = document.getElementById("exporter");
     $main = document.getElementById("main");
+    $floatingUi = document.getElementById("floating_ui");
 
     makeDex();
     makeTypePicker();
@@ -43,6 +45,9 @@ function init() {
     // add event listener for share
     let $download = document.getElementById("btn_download");
     $download.addEventListener("click", (e) => {
+
+        $floatingUi.classList.add("hidden");
+
         // apply styles
         $pokedex.classList.add("filtered");
         $pokedex.parentElement.style.width = getSquareWidth() + "px";
@@ -102,6 +107,7 @@ function init() {
     });
 
     $exporter.addEventListener("click", (e) => {
+        $floatingUi.classList.remove("hidden");
         $exporter.classList.add("hidden");
         $canvas.remove();
     });

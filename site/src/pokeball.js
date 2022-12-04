@@ -1,7 +1,7 @@
 export const pokeball = `<svg xmlns="http://www.w3.org/2000/svg"
      width="14.2222in" height="14.2222in"
      viewBox="0 0 1024 1024">
-  <path stroke="none" stroke-width="1"
+  <path fill="currentColor" stroke="none" stroke-width="1"
         d="M 512.00,359.18
            C 512.00,359.18 512.00,359.18 512.00,359.18
              596.40,359.18 664.81,427.60 664.82,512.00

@@ -7,10 +7,31 @@
     <title>Pokémon Nicknamer</title>
     <link rel="shortcut icon" href="./img/favicon.ico" type="image/x-icon">
     <link rel="icon" href="./img/favicon.ico" type="image/x-icon">
+    <!-- Search Engine -->
+    <meta name="description" content="Nickname and share your Pokémon!">
+    <meta name="image" content="./img/logo.png">
+    <!-- Schema.org for Google -->
+    <meta itemprop="name" content="Wholesome Games">
+    <meta itemprop="description" content="Nickname and share your Pokémon!">
+    <meta itemprop="image" content="./img/logo.png">
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Wholesome Games">
+    <meta name="twitter:description"
+        content="Nickname and share your Pokémon!">
+    <meta name="twitter:creator" content="@_wholesomegames">
+    <meta name="twitter:image:src" content="./img/logo.png">
+    <!-- Open Graph general (Facebook, Pinterest & Google+) -->
+    <meta name="og:title" content="Wholesome Games">
+    <meta name="og:description" content="Nickname and share your Pokémon!">
+    <meta name="og:image" content="./img/logo.png">
+    <meta name="og:url" content="https://wholesomegames.com/">
+    <meta name="og:site_name" content="Wholesome Games">
+    <meta name="og:type" content="website">
 </head>
 <body>
     <div id="main" class="main">
-        <h1>Pokémon Nicknamer</h1>
+        <h1 class="logo"><a href="https://twitter.com/cloutsocks"><img src="./img/logo.png" alt="Pokémon Nicknamer"></a></h1>
 
         <div class="type-picker"></div>
 
@@ -18,15 +39,17 @@
             <div id="pokedex" class="pokegrid">
         </div>
 
-        <div class="floating-ui">
+        <div id="floating_ui" class="floating-ui">
             <div id="btn_filter" class="btn">Filter</div>
-            <div id="btn_download" class="btn">Download / Share</div>
+            <div id="btn_download" class="btn">
+                <div class="download"><svg class="download-svg" aria-hidden="true" role="img" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" fill-rule="evenodd" clip-rule="evenodd" d="M16.293 9.293L17.707 10.707L12 16.414L6.29297 10.707L7.70697 9.293L11 12.586V2H13V12.586L16.293 9.293ZM18 20V18H20V20C20 21.102 19.104 22 18 22H6C4.896 22 4 21.102 4 20V18H6V20H18Z"></path></svg></div> Download</div>
         </div>
     </div>
 
     <div id="exporter" class="exporter hidden">
         <img id="btn_exporter_close" src="./img/ic_close_black_24px.svg">
-        <div id="btn_save" class="btn">Save Image</div>
+        <div id="btn_save" class="btn">
+            <div class="download"><svg class="download-svg" aria-hidden="true" role="img" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" fill-rule="evenodd" clip-rule="evenodd" d="M16.293 9.293L17.707 10.707L12 16.414L6.29297 10.707L7.70697 9.293L11 12.586V2H13V12.586L16.293 9.293ZM18 20V18H20V20C20 21.102 19.104 22 18 22H6C4.896 22 4 21.102 4 20V18H6V20H18Z"></path></svg></div> Save Image</div>
     </div>
 </body>
 </html>
