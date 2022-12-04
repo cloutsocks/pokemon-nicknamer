@@ -62,6 +62,7 @@ textarea {
     grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
 
     .block {
+        cursor: pointer;
         position: relative;
         height: 180px;
     }
