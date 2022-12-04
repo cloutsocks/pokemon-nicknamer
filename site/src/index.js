@@ -10,6 +10,7 @@ let $exporter;
 let $main;
 let $canvas;
 let $teamBlock;
+let $typePicker;
 
 let types = {
     'ice': '#9dd1f2',
@@ -21,7 +22,7 @@ let types = {
     'dark': '#6b6b6b',
     'grass': '#7fbf78',
     'normal': '#838383',
-    'earth': '#9c6e5a',
+    'ground': '#9c6e5a',
     'psychic': '#bd8cbf',
 }
 
@@ -37,6 +38,7 @@ function init() {
     $main = document.getElementById("main");
 
     makeDex();
+    makeTypePicker();
 
     // add event listener for share
     let $download = document.getElementById("btn_download");
@@ -103,8 +105,49 @@ function init() {
         $exporter.classList.add("hidden");
         $canvas.remove();
     });
+}
 
+function makeTypePicker() {
+    $typePicker = document.querySelector(".type-picker");
 
+    let $types = document.createElement("div");
+    $types.classList.add("types");
+
+    for (let type in types) {
+        let $type = document.createElement("div");
+        $type.classList.add("type");
+        $type.dataset.type = type;
+        $type.style.backgroundColor = types[type];
+        $types.appendChild($type);
+    }
+
+    if (!localStorage['team_type']) {
+        // random team type
+        localStorage['team_type'] = Object.keys(types)[Math.floor(Math.random() * Object.keys(types).length)];
+    }
+    $types.querySelector(`[data-type="${localStorage['team_type']}"]`).classList.add("selected");
+    $teamBlock.style.backgroundColor = types[localStorage['team_type']];
+    if(['ice', 'electric', 'fairy'].includes(localStorage['team_type'])) {
+        $teamBlock.style.setProperty("--text-color", "black");
+    } else {
+        $teamBlock.style.setProperty("--text-color", "white");
+    }
+
+    $types.addEventListener("click", (e) => {
+        if (e.target.classList.contains("type")) {
+            $types.querySelector(".selected").classList.remove("selected");
+            e.target.classList.add("selected");
+            localStorage['team_type'] = e.target.dataset.type;
+            $teamBlock.style.backgroundColor = types[localStorage['team_type']];
+            if(['ice', 'electric', 'fairy'].includes(localStorage['team_type'])) {
+                $teamBlock.style.setProperty("--text-color", "black");
+            } else {
+                $teamBlock.style.setProperty("--text-color", "white");
+            }
+        }
+    });
+
+    $typePicker.appendChild($types);
 }
 
 function makeDex() {
@@ -164,7 +207,7 @@ function makeDex() {
 
     $input.addEventListener("blur", (e) => {
         if ($input.value.length > 0) {
-            localStorage['team_name'] = $input.value;
+            $name.textContent = localStorage['team_name'] = $input.value;
         } else {
             $name.textContent = teamPlaceholder;
             delete localStorage['team_name'];

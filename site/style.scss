@@ -21,6 +21,10 @@ a {
 .main {
     margin: 0 auto;
     max-width: 1228px;
+
+    & > * { 
+        padding: 8px;
+    }
 }
 
 button,
@@ -34,7 +38,6 @@ textarea {
 }
 
 .pokegrid-wrapper {
-    padding: 8px;
 }
 .pokegrid {
     display: grid;
@@ -96,12 +99,13 @@ textarea {
 
 .pokegrid {
     .team-block {
+        --text-color: white;
         order: 1;
         height: 190px;
         font-family: $nunito;
         font-weight: 700;
         background-color: #646eab;
-        color: white;
+        color: var(--text-color);
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -120,7 +124,7 @@ textarea {
             // background-size: 122%;
 
             input.nickname, .name {
-                color: white;
+                color: var(--text-color);
                 text-align: center;
                 margin-top: auto;
                 margin-bottom: auto;
@@ -136,8 +140,8 @@ textarea {
                 margin-bottom: 10%;
 
                 a, .url {
-                    color: #fff;
-                    border-bottom: 1px solid #fff;
+                    color: var(--text-color);;
+                    border-bottom: 1px solid var(--text-color);;
                     padding-bottom: 3px;
                 }
             }
@@ -224,6 +228,23 @@ textarea {
     //     fill: rgba(0,0,0,.15);
     //     //transform: rotate(16deg);
     // }
+}
+
+.types {
+    display: flex;
+
+    .type {
+        width: 30px;
+        height: 30px;
+        &:not(:last-child) {
+            margin-right: 5px;
+        }
+
+        &.selected {
+            outline: 4px solid black;
+            outline-offset: 1px;
+        }
+    }
 }
 
 .pokegrid.filtered {
