@@ -7,8 +7,20 @@
     <title>Pokémon Nicknamer</title>
 </head>
 <body>
-    <div class="main">
-        <div id="pokedex" class="pokegrid"></div>
+    <div id="main" class="main">
+        <div class="pokegrid-wrapper">
+            <div id="pokedex" class="pokegrid">
+        </div>
+
+        <div class="floating-ui">
+            <div id="btn_reset" class="btn">Reset</div>
+            <div id="btn_debug" class="btn">Filter</div>
+            <div id="btn_download" class="btn">Download / Share</div>
+        </div>
+    </div>
+
+    <div id="exporter" class="exporter hidden">
+        <img src="./img/ic_close_black_24px.svg">
     </div>
 </body>
 </html>
